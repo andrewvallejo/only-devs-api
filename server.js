@@ -12,12 +12,22 @@ app.locals = {
   questions
 }
 
-app.get('/api/v1/questions', (request, response) => {
+
+
+app.get('/api/questions', (request, response) => {
   const questions = app.locals.questions;
   response.json({ questions })
 })
 
-
+app.get('/api/questions/:id', (request, response) => {
+  const questions = app.locals.questions;
+  const { id } = request.params 
+  const queriedQuestion = questions.find(question => question.id === parseInt(id));
+  
+  !queriedQuestion
+    ? response.status(404).send('This question is not found!')
+    : response.status(200).json(queriedQuestion)
+})
 
 
 
