@@ -12,6 +12,15 @@ app.locals = {
   questions
 }
 
+app.get('/api/v1/questions', (request, response) => {
+  const questions = app.locals.questions;
+  response.json({ questions })
+})
+
+
+
+
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
