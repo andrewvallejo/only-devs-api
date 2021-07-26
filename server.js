@@ -12,8 +12,6 @@ app.locals = {
   questions
 }
 
-
-
 app.get('/api/questions', (request, response) => {
   const questions = app.locals.questions;
   response.json({ questions })
@@ -27,6 +25,21 @@ app.get('/api/questions/:id', (request, response) => {
   !queriedQuestion
     ? response.status(404).send('This question is not found!')
     : response.status(200).json(queriedQuestion)
+})
+
+app.post('/api/questions/:id', (request, response) => {
+  const { id } = request.params;
+  const { answer } = request.body;
+  
+  !answer && response.status(422)
+    .send({ error: `Expected format: { answer: <String> }. You're missing an answer` });
+  
+  return app.locals.questions.find(question => {
+    if (question.id === parseInt(id)) {
+      question.answers.push(answer);
+      response.status(201).json({ answer });
+    }
+  });
 })
 
 
