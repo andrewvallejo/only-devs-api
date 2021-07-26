@@ -2,7 +2,7 @@
   "name": "only-devs-api",
   "version": "1.0.0",
   "description": "API express server for onlyDevs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node server.js"
