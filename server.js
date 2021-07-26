@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { questions } from './data/questions';
+import { pool } from './database/database';
 const app = express();
 
 app.use(cors())
@@ -12,35 +13,34 @@ app.locals = {
   questions
 }
 
-app.get('/api/questions', (request, response) => {
-  const questions = app.locals.questions;
-  response.json({ questions })
+// app.get('/questions', (request, response) => {
+
+  // response.json({ questions })
+// })
+
+// app.get('/questions/:id', (request, response) => {
+//   const questions = app.locals.questions;
+//   const { id } = request.params 
+//   const queriedQuestion = questions.find(question => question.id === parseInt(id));
+  
+//   !queriedQuestion
+//     ? response.status(404).send('This question is not found!')
+//     : response.status(200).json(queriedQuestion)
+// })
+
+app.post('/questions', async (request, response) => { 
+  try
+  {
+  const { question } = request.body;
+  const newQuestion = await pool.query(
+    "INSERT INTO questions(question) VALUES ($1)",
+    [question]
+      )
+} catch (error) {
+    console.error(error.message)
+  }
 })
 
-app.get('/api/questions/:id', (request, response) => {
-  const questions = app.locals.questions;
-  const { id } = request.params 
-  const queriedQuestion = questions.find(question => question.id === parseInt(id));
-  
-  !queriedQuestion
-    ? response.status(404).send('This question is not found!')
-    : response.status(200).json(queriedQuestion)
-})
-
-app.post('/api/questions/:id', (request, response) => {
-  const { id } = request.params;
-  const { answer } = request.body;
-  
-  !answer && response.status(422)
-    .send({ error: `Expected format: { answer: <String> }. You're missing an answer` });
-  
-  return app.locals.questions.find(question => {
-    if (question.id === parseInt(id)) {
-      question.answers.push(answer);
-      response.status(201).json({ answer });
-    }
-  });
-})
 
 
 
