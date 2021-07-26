@@ -13,9 +13,17 @@ app.locals = {
   questions
 }
 
-// app.get('/questions', (request, response) => {
+app.get('/questions', (request, response) => {
+  pool.query('SELECT * FROM questions', (error, results) => {
+    if (error) {
+      throw error
+    } 
+    response.status(200).json(results)
+  })
+})
 
-  // response.json({ questions })
+
+//   response.json({ questions })
 // })
 
 // app.get('/questions/:id', (request, response) => {
@@ -35,7 +43,7 @@ app.post('/questions', async (request, response) => {
   const newQuestion = await pool.query(
     "INSERT INTO questions(question) VALUES ($1)",
     [question]
-      )
+      ).then(response.status(200).json(question))
 } catch (error) {
     console.error(error.message)
   }
