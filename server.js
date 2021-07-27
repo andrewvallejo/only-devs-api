@@ -8,10 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 app.set("port", process.env.PORT || 3001);
-app.locals = {
-  title: "onlyDevs API",
-  questions,
-};
+app.locals.title = "onlyDevs API"
 
 app.get("/questions", async (request, response) => {
   try {
