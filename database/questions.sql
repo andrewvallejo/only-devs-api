@@ -2,19 +2,20 @@ CREATE DATABASE questions_database;
 
 CREATE TABLE questions 
 (
-  question_id SERIAL PRIMARY KEY NOT NULL,
-  question TEXT NOT NULL,
-);
+  QUESTION_ID SERIAL PRIMARY KEY NOT NULL,
+  QUESTION TEXT NOT NULL,
+)
 
-
+INSERT INTO questions (question)
+VALUES ('HOW MUCH WOULD A WOODCHUCK CHUCK?...')
 
 CREATE TABLE answers 
 (
-  answer_id SERIAL PRIMARY KEY NOT NULL,
-  question_id integer NOT NULL references questions(question_id),
-  answer VARCHAR(500) NOT NULL,
-  rating integer NOT NULL,
-);
+  ANSWER_ID SERIAL PRIMARY KEY NOT NULL,
+  QUESTION_ID integer NOT NULL references questions(QUESTION_ID),
+  ANSWER VARCHAR(500) NOT NULL,
+  RATING integer NOT NULL,
+)
 
 -- RATING = 0 <-- ANSWER
 -- primary key?
