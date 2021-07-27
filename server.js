@@ -24,6 +24,18 @@ app.get("/questions", async (request, response) => {
   }
 });
 
+app.post("/questions", async (request, response) => {
+  try {
+    const { question } = request.body;
+    await pool.query("INSERT INTO questions(question) VALUES ($1)",
+      [question]
+    );
+    return response.status(200);
+  } 
+  catch (error) {
+    response.status(404).send(error.message); 
+  }
+});
 
 
 // app.get('/questions/:id', (request, response) => {
