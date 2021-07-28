@@ -53,35 +53,20 @@ app.get('/questions/:id', async (request, response) => {
   }
 });
 
-app.post('/questions/answer', async (request, response) => {
-  try {
+app.post('/questions/answer', (request, response) => {
     const { question_id, answer } = request.body;
-    await pool.query('INSERT INTO answers(question_id, answer, rating) VALUES ($1, $2, $3)',
+     pool.query('INSERT INTO answers(question_id, answer, rating) VALUES ($1, $2, $3)',
     [question_id, answer, 0], 
-    (error, results => {
-      console.log('ERROR INSIDE QUERY')
+    (error, results) => {
+      console.log(results)
       if (error) {
-        return console.error(`Query ${error.stack}`);
+        return console.log(error);
       }
       //check all these lines 
-      response.status(201).json({RESPONSE:"Successful post"});
-    }));
-    
-  } catch (error) {
-    response.status(404).send(error); 
-  }
-  /*
-   const { question } = request.body;
-    await pool.query("INSERT INTO questions(question) VALUES ($1)",
-      [question]
-    );
-    return response.status(200);
-  } 
-  catch (error) {
-    response.status(404).send(error.message); 
-  }
-});
-  */
+      response.status(201).json("Successful post");
+    });  
+    //response.status(404).send("Dog"); 
+  
 })
 
 //   const questions = app.locals.questions;
