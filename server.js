@@ -53,12 +53,13 @@ app.get('/questions/:id', async (request, response) => {
   }
 });
 
-app.post('/questions/:id', async (request, response) => {
+app.post('/questions/answer', async (request, response) => {
   try {
     const { question_id, answer } = request.body;
     await pool.query('INSERT INTO answers(question_id, answer, rating) VALUES ($1, $2, $3)',
     [question_id, answer, 0], 
     (error, results => {
+      console.log('ERROR INSIDE QUERY')
       if (error) {
         return console.error(`Query ${error.stack}`);
       }
@@ -67,7 +68,7 @@ app.post('/questions/:id', async (request, response) => {
     }));
     
   } catch (error) {
-    response.status(404).send(error.message); 
+    response.status(404).send(error); 
   }
   /*
    const { question } = request.body;
