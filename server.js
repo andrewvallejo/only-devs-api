@@ -38,15 +38,20 @@ app.post("/questions", async (request, response) => {
 });
 
 
-// app.get('/questions/:id', (request, response) => {
-//   const questions = app.locals.questions;
-//   const { id } = request.params
-//   const queriedQuestion = questions.find(question => question.id === parseInt(id));
+app.get('/questions/:id', async (request, response) => {
+  //get the answers by the question id
+  try {
+    const { id } = request.params
+    await pool.query(`SELECT * FROM ANSWERS WHERE question_id = ${id}`);
+  }
 
-//   !queriedQuestion
-//     ? response.status(404).send('This question is not found!')
-//     : response.status(200).json(queriedQuestion)
-// })
+  const questions = app.locals.questions;
+  const queriedQuestion = questions.find(question => question.id === parseInt(id));
+
+  !queriedQuestion
+    ? response.status(404).send('This question is not found!')
+    : response.status(200).json(queriedQuestion)
+})
 
 // Answers
 
