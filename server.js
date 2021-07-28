@@ -1,12 +1,13 @@
-import express, { request, response } from "express";
-import cors from "cors";
-import { pool } from "./database/database";
+const express = require("express")
+const cors = require("cors");
+pool = require( "./config");
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
-app.set("port", process.env.PORT || 3001);
+
 app.locals.title = "onlyDevs API"
 
 app.get("/questions", async (request, response) => {
@@ -65,6 +66,7 @@ app.post('/questions/answer', (request, response) => {
   
 })
 
-app.listen(app.get("port"), () => {
-  console.log(`${app.locals.title} is running on http://localhost:${app.get("port")}.`);
+
+app.listen(process.env.PORT || 3001, ()  => {
+  console.log(`${app.locals.title} server is running.`);
 });
