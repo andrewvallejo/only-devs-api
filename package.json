@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "API express server for onlyDevs",
   "main": "server.js",
+  "engines": {
+    "node": "16.4.0",
+    "npm": "7.18.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "pg": "^8.6.0"
   },
