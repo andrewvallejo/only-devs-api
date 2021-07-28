@@ -1,6 +1,5 @@
 import express, { request, response } from "express";
 import cors from "cors";
-import { questions } from "./data/questions";
 import { pool } from "./database/database";
 const app = express();
 
@@ -38,7 +37,6 @@ app.post("/questions", async (request, response) => {
 });
 
 app.get('/questions/:id', async (request, response) => {
-  //get the answers by the question id
   try {
     const { id } = request.params
     await pool.query(`SELECT * FROM ANSWERS WHERE question_id = ${id}`, (error, results) => {
@@ -58,26 +56,14 @@ app.post('/questions/answer', (request, response) => {
      pool.query('INSERT INTO answers(question_id, answer, rating) VALUES ($1, $2, $3)',
     [question_id, answer, 0], 
     (error, results) => {
-      console.log(results)
+      
       if (error) {
-        return console.log(error);
+        return console.error(error);
       }
-      //check all these lines 
       response.status(201).json("Successful post");
     });  
-    //response.status(404).send("Dog"); 
   
 })
-
-//   const questions = app.locals.questions;
-//   const queriedQuestion = questions.find(question => question.id === parseInt(id));
-
-//   !queriedQuestion
-//     ? response.status(404).send('This question is not found!')
-//     : response.status(200).json(queriedQuestion)
-// })
-
-// Answers
 
 app.listen(app.get("port"), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get("port")}.`);
