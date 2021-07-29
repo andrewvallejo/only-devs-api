@@ -8,7 +8,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-const port = process.env.PORT || 3001
 
 app.locals.title = "onlyDevs API"
 
@@ -69,6 +68,6 @@ app.post('/questions/answer', (request, response) => {
 })
 
 
-app.listen(app.get("port"), () => {
-  console.log(`${app.locals.title} is running on http://localhost:${app.get("port")}.`);
+app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
+  console.log("Server is running.");
 });
