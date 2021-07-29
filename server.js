@@ -26,7 +26,7 @@ app.get("/questions", async (request, response) => {
      return response.status(200).json(results.rows);
     });
   
-    response.status(422).send("Sorry! The server is down!");
+    return response.status(422).send("Sorry! The server is down!");
 });
 
 app.post("/questions", async (request, response) => {
@@ -38,7 +38,7 @@ app.post("/questions", async (request, response) => {
     return response.status(200);
   } 
   catch (error) {
-    response.status(404).send(error.message); 
+    return response.status(404).send(error.message); 
   }
 });
 
@@ -49,11 +49,11 @@ app.get('/questions/:id', async (request, response) => {
       if (error) {
         return console.error(`Query ${error.stack}`);
       }
-      response.status(200).json(results.rows);
+      return response.status(200).json(results.rows);
     });
   }
   catch (error) {
-    response.status(422).send("Sorry! The server is down!");
+    return response.status(422).send("Sorry! The server is down!");
   }
 });
 
@@ -66,7 +66,7 @@ app.post('/questions/answer', (request, response) => {
       if (error) {
         return console.error(error);
       }
-      response.status(201).json("Successful post");
+      return response.status(201).json("Successful post");
     });  
   
 })
