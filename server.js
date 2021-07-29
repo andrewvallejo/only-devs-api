@@ -37,7 +37,7 @@ app.post("/questions", (request, response) => {
 
 app.get('/questions/:id', (request, response) => {
   const { id } = request.params
-  pool.query(`SELECT * FROM ANSWERS WHERE question_id = ${id}`, (error, results) => {
+  pool.query(`SELECT * FROM questions WHERE question_id = ${id}`, (error, results) => {
     if (error) {
       throw error
     }
