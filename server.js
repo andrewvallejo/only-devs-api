@@ -8,6 +8,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
+const port = process.env.PORT || 3001
+
 app.locals.title = "onlyDevs API"
 
 app.get("/questions", async (request, response) => {
@@ -67,6 +69,7 @@ app.post('/questions/answer', (request, response) => {
 })
 
 
-app.listen(process.env.PORT || 3001, ()  => {
-  console.log(`${app.locals.title} server is running.`);
+app.listen(app.get("port"), () => {
+  console.log(`${app.locals.title} is running on http://localhost:${app.get("port")}.`);
 });
+git a
