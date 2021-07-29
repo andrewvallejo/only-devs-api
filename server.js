@@ -13,7 +13,7 @@ app.locals.title = "onlyDevs API"
 
 app.get("/questions",  (request, response) => {
   try {
-     pool.query("SELECT * FROM questions", (error, results) => {
+     pool.query("SELECT * FROM questions;", (error, results) => {
       if (error) {
         return console.error(`Query ${error.stack}`);
       }
