@@ -11,15 +11,18 @@ app.use(express.static("public"));
 
 app.locals.title = "onlyDevs API"
 
-app.get("/questions", async (request, response) => {
-  pool.query("SELECT * FROM questions", (error, results) => {
+app.get("/questions",  (request, response) => {
+  // try {
+     pool.query("SELECT * FROM questions", (error, results) => {
       if (error) {
         return console.error(`Query ${error.stack}`);
       }
       response.status(200).json(results.rows);
     });
-  
-    response.status(422).send("Sorry! The server is down!");
+  // } 
+  // catch (error) {
+  //   response.status(422).send("Sorry! The server is down!");
+  // }
 });
 
 app.post("/questions", async (request, response) => {
@@ -65,6 +68,6 @@ app.post('/questions/answer', (request, response) => {
 })
 
 
-app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log("Server is running.");
 });
