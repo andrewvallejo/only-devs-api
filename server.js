@@ -68,6 +68,6 @@ app.post('/questions/answer', (request, response) => {
 })
 
 
-app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log("Server is running.");
 });
