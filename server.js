@@ -23,7 +23,7 @@ app.get("/questions", async (request, response) => {
       if (error) {
         return console.error(`Query ${error.stack}`);
       }
-      response.status(200).json(results.rows);
+     return response.status(200).json(results.rows);
     });
   
     response.status(422).send("Sorry! The server is down!");
