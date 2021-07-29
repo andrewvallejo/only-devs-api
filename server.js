@@ -2,8 +2,6 @@ const express = require("express")
 const cors = require("cors");
 const {Pool} = require('pg')
 
-// const pool = require('./config')
-
 const pool = new Pool({
   connectionString: "postgres://afuxtawmyieyjo:13bb8d5ece25a9242c5ca5f55001027d17f329cfd3a91cecf780c5024e0239a4@ec2-3-237-55-96.compute-1.amazonaws.com:5432/d9aqkclakvsmeg",
   ssl: { rejectUnauthorized: false }
@@ -37,7 +35,7 @@ app.post("/questions", (request, response) => {
 
 app.get('/questions/:id', (request, response) => {
   const { id } = request.params
-  pool.query(`SELECT * FROM questions WHERE question_id = ${id}`, (error, results) => {
+  pool.query(`SELECT * FROM ANSWERS WHERE question_id = ${id}`, (error, results) => {
     if (error) {
       throw error
     }
