@@ -66,5 +66,5 @@ app.post('/questions/answer/vote', (request, response) => {
 
 
 app.listen(process.env.PORT || 3001, () => {
-  console.log("Server is running.");git
+  console.log("Server is running.");
 });
