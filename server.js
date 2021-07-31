@@ -52,6 +52,19 @@ app.post('/questions/answer', (request, response) => {
 })
 
 
+app.post('/questions/answer/vote', (request, response) => {
+  const { question_id, answer_id, vote } = request.body
+  if (vote === 'upvote') {
+    pool.query(`UPDATE answers SET rating = rating + 1 WHERE question_id = ${question_id} AND id = ${answer_id}`)
+  } 
+  else if (vote === 'downvote') {
+    pool.query(`UPDATE answers SET rating = rating - 1 WHERE question_id = ${question_id} AND id = ${answer_id}`)
+  };
+  return response.status(201).json("Successful post")
+})
+
+
+
 app.listen(process.env.PORT || 3001, () => {
-  console.log("Server is running.");
+  console.log("Server is running.");git
 });
