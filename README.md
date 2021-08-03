@@ -43,11 +43,11 @@ npm start
 
 | Purpose   | URL      | Verb   | Request Body |
 | :-------- | :------- | :------- | :------------ |
-| Get all questions | /questions | GET | All questions each with <br/>`{"id": <Integer>, "question": <String>, "answers": <Array>}` |
-| Get specific question | /questions/:id | GET |   `{"id": <Integer>, "question": <String>, "answers": <Array>}` |
-| Submit an answer to question | /question/:id | POST |  `{"answer": <String>}` |
-| Add score from answer | /questions/answer/vote | POST | `{"question_id": <Integer>,"answer_id": <Integer>, "vote": "upvote"}` |
-| Remove score from answer | /questions/answer/vote | POST | `{"question_id": <Integer>,"answer_id": <Integer>, "vote": "downvote"}` |
+| Get all questions | `https://onlydevs-api.herokuapp.com/questions` | GET | All questions each with <br/>`{"id": <Integer>, "question": <String>, "answers": <Array>}` |
+| Get specific question | `https://onlydevs-api.herokuapp.com/questions/:id` | GET |   `{"id": <Integer>, "question": <String>, "answers": <Array>}` |
+| Submit an answer to question | `https://onlydevs-api.herokuapp.com/question/:id` | POST |  `{"answer": <String>}` |
+| Add score from answer | `https://onlydevs-api.herokuapp.com/questions/answer/vote` | POST | `{"question_id": <Integer>,"answer_id": <Integer>, "vote": "upvote"}` |
+| Remove score from answer | `https://onlydevs-api.herokuapp.com/questions/answer/vote` | POST | `{"question_id": <Integer>,"answer_id": <Integer>, "vote": "downvote"}` |
 
 
 ## Authors
