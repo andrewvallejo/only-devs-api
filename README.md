@@ -8,9 +8,9 @@ This API was built with Express for the project [onlyDevs](https://github.com/an
 <p style="text-align: center;"> 
   <img alt="JavaScript Badge" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat-square" />
   <img alt="Express Badge" src="https://img.shields.io/badge/Express-000?logo=express&logoColor=fff&style=flat-square" />
-	<img src="https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=flat-square" alt="Babel Badge">
-	<img src="https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=flat-square" alt="Nodemon Badge">
-	<img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=flat-square" alt="PostgreSQL Badge">
+  <img src="https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=flat-square" alt="Babel Badge">
+  <img src="https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=flat-square" alt="Nodemon Badge">
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=flat-square" alt="PostgreSQL Badge">
 </p>
 
 
@@ -19,6 +19,7 @@ This API was built with Express for the project [onlyDevs](https://github.com/an
 - GET front-end developer interview questions.
 - POST user submitted answers.
 - GET user submitted answers for specific questions.
+- POST user answers to either upvote or downvote
 
 ## Installation
 
@@ -43,9 +44,10 @@ npm start
 | Purpose   | URL      | Verb   | Request Body |
 | :-------- | :------- | :------- | :------------ |
 | Get all questions | /questions | GET | All questions each with <br/>`{"id": <Integer>, "question": <String>, "answers": <Array>}` |
-| Get specific question | /questions/:id | GET |   `{"id": <Integer>, "question": <String>, "answers": <Array>}` 
-| Submit an answer to question | /question/:id | POST |  `{"answer": <String>}`
-
+| Get specific question | /questions/:id | GET |   `{"id": <Integer>, "question": <String>, "answers": <Array>}` |
+| Submit an answer to question | /question/:id | POST |  `{"answer": <String>}` |
+| Add score from answer | /questions/answer/vote | POST | `{"question_id": <Integer>,"answer_id": <Integer>, "vote": "upvote"}` |
+| Remove score from answer | /questions/answer/vote | POST | `{"question_id": <Integer>,"answer_id": <Integer>, "vote": "downvote"}` |
 
 
 ## Authors
